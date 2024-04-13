@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Set the script to exit on any errors
+set -e
+
+python3 -m venv env
+source env/bin/activate
+
+# Install dependencies from requirements.txt
+pip install -r requirements.txt
+
+# Install the backend servers as editable packages
+pip install -e index_server
+pip install -e search_server
+
+echo "Installation complete."
