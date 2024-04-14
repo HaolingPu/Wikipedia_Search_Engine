@@ -42,3 +42,5 @@ for line in sys.stdin:
     
     # FIXME Map 1 output.  Emit one line for each document, including the doc
     # ID and document content (You will need them later!)
+    print (f'{doc_id}\t{content}')
+    HTML = ""
