@@ -11,8 +11,8 @@ import math
 def reduce_one_group(key, group, N):
     """Reduce one group."""
     # print(f'{doc_id}\t{term} {DF} {TF}')
-
-    for line in sys.stdin:
+    group = list(group)
+    for line in group:
         doc_id, term, DF, TF = line.strip().split()
         idf = float(math.log10(N / float(DF)))
         # print("N*:", N)

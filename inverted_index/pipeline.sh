@@ -75,7 +75,7 @@ madoop \
 # Job 6
 madoop \
   -input output5 \
-  -output output6 \
+  -output output \
   -mapper ./map6.py \
   -reducer ./reduce6.py \
   -partitioner ./partition.py \
