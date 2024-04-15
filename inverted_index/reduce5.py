@@ -14,13 +14,11 @@ def reduce_one_group(key, group):
     group = list(group)
     # print(f'{doc_id}\t{term} {DF} {TF} {idf} {w}')
     Norm = 0
-    Sum = 0
     for line in group:
         doc_id, term, DF, TF, idf, w = line.strip().split()
-        Sum += float(w)*float(w)
-        print("Current sum*: ", Sum)
-    Norm = math.sqrt(Sum)
-    print("Norm*: ", Norm)
+        Norm += float(w)*float(w)
+        # print("Current sum*: ", Sum)
+    # print("Norm*: ", Norm)
     for line in group:
         doc_id, term, DF, TF, idf, _ = line.strip().split()
         print(f'{doc_id}\t{term} {idf} {DF} {TF} {Norm}')

@@ -77,6 +77,5 @@ madoop \
   -input output5 \
   -output output6 \
   -mapper ./map6.py \
-  -reducer ./reduce6.py
-  -partitioner partition.py \
-  -numReduceTasks 3
+  -reducer ./reduce6.py \
+  -partitioner ./partition.py \

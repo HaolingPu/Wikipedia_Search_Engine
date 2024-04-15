@@ -25,7 +25,7 @@ for line in sys.stdin:
     # Clean and process the content
     clean_terms = clean_content(content)
     # Emit terms along with their document ID
-    for term in set(clean_terms):  # Use a set to emit each term only once per document
+    for term in clean_terms:  # Use a set to emit each term only once per document
         print(f'{term}\t{doc_id}')
 
 

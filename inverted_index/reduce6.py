@@ -12,18 +12,22 @@ import math
 def reduce_one_group(key, group):
     """Reduce one group, one final partition %3."""
     group = list(group)
+    # print(key)
     # print(f'{new_key}\t{doc_id} {term} {idf} {DF} {TF} {Norm}')
     term_dict = {}
     # { "happy" : [(a,b,c), (a,b,c), ()]}
     for line in group:
         new_key, doc_id, term, idf, DF, TF, Norm = line.strip().split()
+        
         if term not in term_dict:
             term_dict[term] = []
-        term_dict[term].append((doc_id, TF, Norm))
+        term_dict[term].append((idf, doc_id, TF, Norm))
 
     for term, docs in term_dict.items():  #terms is key, docs is value (list)
         for doc_info in docs:
-            print(f"{term} {idf}" + "\t".join(doc_info))
+            idf, doc_id, TF, Norm = doc_info
+            # print("newkey: ", key)
+            print(f"{term} {idf} {doc_id} {TF} {Norm}")
 
 
 def keyfunc(line):

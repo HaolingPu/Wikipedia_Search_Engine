@@ -1,0 +1,102 @@
+4436465	algebraic 1 1
+4436465	author 3 1
+4436465	baveja 1 1
+4436465	documents 1 1
+4436465	general 1 1
+4436465	identifiers 1 1
+4436465	index 1 1
+4436465	maya 1 1
+4436465	model 1 5
+4436465	objects 1 1
+4436465	representing 1 1
+4436465	space 1 3
+4436465	term 3 1
+4436465	terms 1 1
+4436465	text 1 1
+4436465	vector 1 4
+4436465	vectors 1 1
+739261	algorithm 1 1
+739261	author 3 1
+739261	cofounder 1 1
+739261	engine 1 1
+739261	google 1 1
+739261	larry 1 1
+739261	melina 1 1
+739261	named 1 1
+739261	odell 1 1
+739261	page 1 2
+739261	pagerank 1 3
+739261	pages 1 1
+739261	pr 1 1
+739261	rank 1 1
+739261	results 1 1
+739261	search 1 2
+739261	term 3 1
+739261	web 1 2
+9229752	andrew 1 1
+9229752	author 3 1
+9229752	collection 1 1
+9229752	corpus 1 1
+9229752	deorio 1 1
+9229752	document 1 2
+9229752	frequency 1 1
+9229752	frequencyinverse 1 1
+9229752	importance 1 1
+9229752	information 1 1
+9229752	measure 1 1
+9229752	retrieval 1 1
+9229752	short 1 1
+9229752	term 3 1
+9229752	tfidf 1 7
+9229752	word 1 1
+algebraic 4436465
+algorithm 739261
+andrew 9229752
+author 4436465
+author 739261
+author 9229752
+baveja 4436465
+cofounder 739261
+collection 9229752
+corpus 9229752
+deorio 9229752
+document 9229752
+documents 4436465
+engine 739261
+frequency 9229752
+frequencyinverse 9229752
+general 4436465
+google 739261
+identifiers 4436465
+importance 9229752
+index 4436465
+information 9229752
+larry 739261
+maya 4436465
+measure 9229752
+melina 739261
+model 4436465
+named 739261
+objects 4436465
+odell 739261
+page 739261
+pagerank 739261
+pages 739261
+pr 739261
+rank 739261
+representing 4436465
+results 739261
+retrieval 9229752
+search 739261
+short 9229752
+space 4436465
+term 4436465
+term 739261
+term 9229752
+terms 4436465
+text 4436465
+tfidf 9229752
+vector 4436465
+vectors 4436465
+web 739261
+word 9229752

@@ -9,15 +9,11 @@ import itertools
 
 def reduce_one_group(key, group):
     """Reduce one group."""
+    # print(key)
     group = list(group)
-    TF = 0
+    TF = len(group)
     # print(f'{term}{doc_id}\t{len(doc_id_set)}')
-    print("Cur GROUP*: ", group)
-    for line in group:
-        term, doc_id, DF = line.strip().split()
-        TF += 1
-        # print("Cur line: ", line)
-        # print("Cur TF", TF)
+    term, doc_id, DF = group[0].strip().split()
     print(f'{doc_id}\t{term} {DF} {TF}')
 
 

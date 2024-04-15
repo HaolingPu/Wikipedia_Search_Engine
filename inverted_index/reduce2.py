@@ -7,7 +7,6 @@ https://github.com/eecs485staff/madoop/blob/main/README_Hadoop_Streaming.md
 import sys
 import itertools
 
-df = {} #key:{word} val:{df}
 
 def reduce_one_group(key, group):
     """Reduce one group."""
@@ -19,7 +18,6 @@ def reduce_one_group(key, group):
     for line in group:
         term, doc_id = line.strip().split()
         print(f'{term} {doc_id}\t{len(doc_id_set)}')
-
 
 
 def keyfunc(line):
