@@ -37,7 +37,8 @@ def get_info():
 @index.app.route('/api/v1/hits/')
 def load_index():
     """Handle query and Return hit info"""
-    query = flask.request.args.get('q', '/')
+    query = flask.request.args.get('q', '')
+    weight = flask.request.args.get('w', default=0.5, type=float)
     query = list(clean_content(query))
     index_path = index.app.config['INDEX_PATH']
     sets = []
@@ -86,5 +87,21 @@ def load_index():
         s = sum(x * y for x, y in zip(doc_score, query_score))
         s = s/(math.sqrt(query_norm)*math.sqrt(doc_norm))
         score[doc_id] = s
+    
+    #caculate the score_w
+    hits = [] # list of dictionary doc_id : score_w
+    with open('pagerank.out', 'r') as file:
+        for line in file:
+            doc_id, PR = line.strip().split()
+            PR = float(PR)
+            if doc_id in result:
+                score_dict = {}
+                score_dict['docid'] = doc_id
+                score_dict['score'] = weight*PR + (1-weight)*score[doc_id]
+                hits.append(score_dict)
 
+    context = {"hits" : hits}
+    return flask.jsonify(**context)     
+
+    
 
