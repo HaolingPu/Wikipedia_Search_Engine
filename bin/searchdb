@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Define the path to the SQLite database
+DB_PATH="./var/search.sqlite3"
+
+# Define the path to the SQL schema file
+SQL_SCHEMA_PATH="./search_server/search/sql/search.sql"
+
+# Function to create the database
+create_db() {
+    if [ -f "$DB_PATH" ]; then
+        echo "Error: database already exists"
+        exit 1
+    else
+        mkdir -p $(dirname "$DB_PATH")
+        sqlite3 "$DB_PATH" < "$SQL_SCHEMA_PATH"
+        echo "Database created at $DB_PATH"
+    fi
+}
+
+# Function to destroy the database
+destroy_db() {
+    rm -f "$DB_PATH"
+    echo "Database destroyed"
+}
+
+# Function to reset the database
+reset_db() {
+    destroy_db
+    create_db
+}
+
+# Handle command line arguments
+case "$1" in
+    create)
+        create_db
+        ;;
+    destroy)
+        destroy_db
+        ;;
+    reset)
+        reset_db
+        ;;
+    *)
+        echo "Usage: $0 {create|destroy|reset}"
+        exit 1
+        ;;
+esac
