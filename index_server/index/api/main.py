@@ -64,8 +64,6 @@ def load_index():
     with open(file_path, 'r') as file:
         for line in file:
             doc_id, PR = line.strip().split(',')
-            print("ID: ", doc_id)
-            print("PR: ", PR)
             pagerank[int(doc_id)] = float(PR)
     return
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ask485?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>ask485?</h1>
+    <form action="/" method="GET" class="search_bar">
+        <input type="text" name="q" value="{{ request.args.get('q', '') }}" required/>
+        <input type="range" name="w" min="0" max="1" step="0.01" value="{{ request.args.get('w', '0.5') }}" />
+        <input type="submit" value="Search"/>
+    </form>
+    {% if results %}
+        <ul>
+            {% for result in results %}
+            <li>
+                <div class="doc_title">{{ result.title }}</div>
+                <a class="doc_url" href="{{ result.url }}">{{ result.url }}</a>
+                <div class="doc_summary">{{ result.summary or 'No summary available' }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="no_results">No search results found!</div>
+    {% endif %}
+</body>
+</html>
