@@ -26,8 +26,7 @@ def get_search():
         result["url"] = cur["url"]
 
     context = {"results" : results}
-    print(context)
-
+    # print(context)
     return flask.render_template('index.html', **context)
 
 
