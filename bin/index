@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# The directory where the log file will be stored
+LOG_DIR="./var/log"
+
+# The log file path
+LOG_FILE="${LOG_DIR}/index.log"
+
+# Define the start function
+start() {
+  echo "starting index server ..."
+
+  # Create log directory if it doesn't exist
+  mkdir -p "${LOG_DIR}"
+  # Clear the log file
+  > "${LOG_FILE}"
+
+  # Define the ports and index file names
+  declare -a ports=("9000" "9001" "9002")
+  declare -a indexes=("inverted_index_0.txt" "inverted_index_1.txt" "inverted_index_2.txt")
+
+  # Start the flask servers in the background
+  for i in "${!ports[@]}"; do
+    if pgrep -f "flask --app index run --host 0.0.0.0 --port ${ports[$i]}" > /dev/null; then
+      echo "Error: index server on port ${ports[$i]} is already running"
+      exit 1
+    else
+      INDEX_PATH="${indexes[$i]}" flask --app index run --host 0.0.0.0 --port "${ports[$i]}" >> "${LOG_FILE}" 2>&1 &
+      echo "Started index server on port ${ports[$i]}"
+    fi
+  done
+}
+
+# Define the stop function
+stop() {
+  echo "stopping index server ..."
+
+  # Kill the flask servers
+  for port in {9000..9002}; do
+    pkill -f "flask --app index run --host 0.0.0.0 --port ${port}" || true
+    echo "Stopped index server on port ${port}"
+  done
+}
+
+# Define the restart function
+restart() {
+  stop
+  sleep 1
+  start
+}
+
+# Define the status function (code provided)
+status() {
+  set +o pipefail
+  NPROCS=$(pgrep -f "flask --app index run --host 0.0.0.0 --port 900[0-2]" | wc -l)
+  set -o pipefail
+  if [ "$NPROCS" -eq 3 ]; then
+    echo "index server running"
+    exit 0
+  elif [ "$NPROCS" -eq 0 ]; then
+    echo "index server stopped"
+    exit 1
+  else
+    echo "index server error: found ${NPROCS} processes, expected 3"
+    exit 2
+  fi
+}
+
+# Parse the command line argument
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    restart
+    ;;
+  status)
+    status
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
