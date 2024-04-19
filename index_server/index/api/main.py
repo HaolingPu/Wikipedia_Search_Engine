@@ -29,6 +29,7 @@ def clean_content(content):
     for word in content.split():
         if word not in stopwords:
             filtered_words.append(word)
+    print(filtered_words)
     return filtered_words
 
 
@@ -71,9 +72,15 @@ def load_index():
 def get_hits():
     """Handle query and Return hit info"""
     query = flask.request.args.get('q', '')
+    print("1111111", query)
     weight = flask.request.args.get('w', default=0.5, type=float)
     query_terms = list(clean_content(query))
-
+    print(query_terms)
+    if not query_terms:
+        print("results not found")
+        context = {"hits" : []}
+        return flask.jsonify(**context) 
+        
     #find doc intersection
     document_sets = []
     for term in query_terms:
@@ -89,24 +96,37 @@ def get_hits():
     
     # now we make sure everything in the query_terms are valid
     
-    # caculate query score
+    # query: michigan michigan michigan
+    # michigan: tf = 3, idf = x, norm sum of all words = 
+    # X (3*x)^2 + (3*x)^2 + (3*x)^2
+    # O (3*x)^2 
+
+    # calculate query score
     query_scores = []
+    query_set = set()
+
     for term in query_terms:
+        if term not in query_set:
+            query_set.add(term)
+
+    for term in query_set: # michigan michigan michigan
         q_score = query_terms.count(term)* float(inverted_index[term]['idf'])
         query_scores.append(q_score)
              
-
     query_norm = sum(x*x for x in query_scores)
 
     # caculate document score
     score = {} # doc_id : score
     for doc_id in result:
         doc_score = []
-        for term in query_terms:
+        # query_terms
+        for term in query_set:
             for posting in inverted_index[term]['postings']:
                 if doc_id == posting[0]:
                     doc_score.append(posting[1]*inverted_index[term]['idf'])
                     doc_norm = posting[2]
+                    break
+ 
         # doc product
         if len(doc_score) != len(query_scores):
             print("LENGTH INCONSISTENT, DOT PRODUCT")

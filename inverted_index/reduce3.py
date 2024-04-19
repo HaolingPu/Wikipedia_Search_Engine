@@ -17,6 +17,7 @@ def reduce_one_group(key, group):
     print(f'{doc_id}\t{term} {DF} {TF}')
 
 
+
 def keyfunc(line):
     """Return the key from a TAB-delimited key-value pair."""
     return line.partition("\t")[0]
