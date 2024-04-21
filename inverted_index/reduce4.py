@@ -8,6 +8,7 @@ import sys
 import itertools
 import math
 
+
 def reduce_one_group(key, group, N):
     """Reduce one group."""
     # print(f'{doc_id}\t{term} {DF} {TF}')

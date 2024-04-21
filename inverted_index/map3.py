@@ -2,6 +2,6 @@
 """Map 3."""
 import sys
 
-#pass through
+# pass through
 for line in sys.stdin:
     print(line.strip())

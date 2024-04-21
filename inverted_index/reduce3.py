@@ -7,6 +7,7 @@ https://github.com/eecs485staff/madoop/blob/main/README_Hadoop_Streaming.md
 import sys
 import itertools
 
+
 def reduce_one_group(key, group):
     """Reduce one group."""
     # print(key)
@@ -15,7 +16,6 @@ def reduce_one_group(key, group):
     # print(f'{term}{doc_id}\t{len(doc_id_set)}')
     term, doc_id, DF = group[0].strip().split()
     print(f'{doc_id}\t{term} {DF} {TF}')
-
 
 
 def keyfunc(line):
