@@ -1,6 +1,6 @@
 # Wikipedia Search Engine
 
-A scalable search engine similar to Google or Bing, built as part of EECS 485 (Web Systems) at the University of Michigan.
+A scalable search engine similar to Google or Bing 🔥
 
 ## 🎯 Project Overview
 
